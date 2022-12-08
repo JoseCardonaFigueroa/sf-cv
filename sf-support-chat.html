@@ -18,4 +18,99 @@
 </style>
 	<body></body>
 
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+	var initESW = function(gslbBaseURL) {
+		embedded_svc.settings.displayHelpButton = true; //Or false
+		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+
+		//embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+		// Settings for Chat
+		embedded_svc.snippetSettingsFile.directToButtonRouting = function(prechatFormData) {
+            // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+            // Returns a valid button ID.
+            console.log('Prechat data'+prechatFormData);
+	console.log(prechatFormData[4]);
+            if (prechatFormData[4].value === "CCH Audit Automation"){
+                return "57307000000bnFN";
+            }
+            if (prechatFormData[4].value === "CCH Trust Accounts"){
+                return "57307000000bnGB";
+            }
+	    if (prechatFormData[4].value === "CCH KPI Monitoring"){
+                return "57307000000bnFr";
+            }
+	    if (prechatFormData[4].value === "CCH CGT and Dividend Scheduling"){
+                return "57307000000bnFS";
+            }
+	    if (prechatFormData[4].value === "CCH Company Secretarial"){
+                return "57307000000bnFX";
+            }
+	    if (prechatFormData[4].value === "CCH Corporation Tax"){
+                return "57307000000bnFc";
+            }
+	    if (prechatFormData[4].value === "CCH Accounts Production"){
+                return "57307000000bnFI";
+            }
+	    if (prechatFormData[4].value === "CCH Document Management"){
+                return "57307000000bnFh";
+            }
+	    if (prechatFormData[4].value === "CCH iXBRL Review & Tag"){
+                return "57307000000bnFm";
+            }
+	    if (prechatFormData[4].value === "CCH OneClick"){
+                return "57307000000bnFw";
+            }
+	    if (prechatFormData[4].value === "CCH Personal Tax"){
+                return "57307000000bnG1";
+            }
+	    if (prechatFormData[4].value === "CCH Practice Management"){
+                return "57307000000bnG6";
+            }
+	    if (prechatFormData[4].value === "Twinfield"){
+                return "57307000000bnGG";
+            }
+        };
+        
+}
+		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+
+		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+		embedded_svc.settings.entryFeature = 'LiveAgent';
+
+		embedded_svc.init(
+			'https://wktaaeu--acc.my.salesforce.com',
+			'https://acc-wktaaeu.cs109.force.com/ukcommunity',
+			gslbBaseURL,
+			'00D0Q0000000y8O',
+			'UK_Service_Chat',
+			{
+				baseLiveAgentContentURL: 'https://c.la1-c1cs-fra.salesforceliveagent.com/content',
+				deploymentId: '57207000000Xa1x',
+				buttonId: '57307000000bnFD',
+				baseLiveAgentURL: 'https://d.la1-c1cs-fra.salesforceliveagent.com/chat',
+				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I3N0000008P8BUAU_17c7396ef5e',
+				isOfflineSupportEnabled: false
+			}
+		);
+	};
+
+	if (!window.embedded_svc) {
+		var s = document.createElement('script');
+		s.setAttribute('src', 'https://wktaaeu--acc.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+		s.onload = function() {
+			initESW(null);
+		};
+		document.body.appendChild(s);
+	} else {
+		initESW('https://service.force.com');
+	}
+</script>
 </html>
